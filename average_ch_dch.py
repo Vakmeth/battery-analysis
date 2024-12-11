@@ -25,7 +25,7 @@ def calculate_avg_value(cell_dataframes, cycles, instruction_name, attribute_nam
     return st.mean(cell_sum)
 
 # Define file to analyse and relevant cycles in it
-file_path = '/home/megli2/Downloads/24-003_PhysicalTwin_Diagnostic_Test14525.csv'
+file_path = '24-003_PhysicalTwin_Diagnostic_Test14525.csv'
 cycles = [2., 3., 4.]
 
 # Read csv data into pandas dataframe and reduce it to the needed values
