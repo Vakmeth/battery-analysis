@@ -43,8 +43,6 @@ def calculate_dcr(cell_dataframes, cycles):
         cell_sum.append(st.mean(cycle_sum))  
     return st.mean(cell_sum)
 
-
-
 # Define file to analyse and relevant cycles in it
 file_path = '24-003_PhysicalTwin_Diagnostic_Test14525.csv'
 cycles = [2., 3., 4.]
