@@ -42,3 +42,10 @@ def reduced_dataframe(battery_dataframe, cycles):
             reduced_dataframe = reduced_dataframe[reduced_dataframe['Instruction Name.' + str(index)] != 'Idle']
             reduced_dataframe = reduced_dataframe[reduced_dataframe['Cycle.' + str(index)].isin(cycles)]
     return reduced_dataframe 
+
+# Plotting funciton
+def set_coordinate_points(reduced_dataframe, step, cycle, capacity_points, time_points, index, measure_value):
+    temporary_frame = reduced_dataframe[reduced_dataframe['Step'] == step]
+    filtered_frame = temporary_frame[temporary_frame['Cycle'] == cycle]
+    capacity_points.append(filtered_frame[measure_value].iloc[index])
+    time_points.append(filtered_frame['Total Time (Seconds)'].iloc[index])

@@ -50,3 +50,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+data_export/
+24-003_PhysicalTwin_Diagnostic_Test14525.csv
+24-003_PhysicalTwin_Init_Test14524.csv
