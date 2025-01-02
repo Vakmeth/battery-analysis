@@ -30,9 +30,6 @@ for cell_dataframe in cell_dataframes:
         ax.plot(data["ch"]["time_points"], data["ch"]["capacity_points"], color='blue')
         ax.plot(data["dch"]["time_points"], data["dch"]["capacity_points"], color='green')
 
-# Show plotted figure
-# plt.show()
-
 # -------------------------------------------------- # 
 
 
@@ -40,7 +37,7 @@ for cell_dataframe in cell_dataframes:
 # -------------------------------------------------- #
 fig2, ax2 = plt.subplots(figsize=(5, 2.7))
 ax2.set_xlabel("Time")
-ax2.set_ylabel("Capacity")
+ax2.set_ylabel("SOC")
 
 for cell_dataframe in cell_dataframes:
     random_color = (random.random(), random.random(), random.random())
@@ -66,6 +63,10 @@ for cell_dataframe in cell_dataframes:
         
         plt.plot(soc_dataframe['Total Time (Seconds)'], soc_values, 
                 label='State of Charge (SOC)', color=random_color)
+
+# -------------------------------------------------- # 
+
+
 
 plt.show()
 plt.legend()
