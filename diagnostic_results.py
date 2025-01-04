@@ -2,6 +2,7 @@ import pandas as pd
 import ch_dch_plot as cdp
 import matplotlib.pyplot as plt
 import random
+import statistics as st
 
 # Define file to analyse and read out dataframe from it
 file_path_cell_1 = 'data_export/Cell2_Diagnostic_Test14893.csv'
@@ -67,6 +68,17 @@ for cell_dataframe in cell_dataframes:
 # -------------------------------------------------- # 
 
 
+# OCV
+# -------------------------------------------------- #
+# Define a current threshold near zero
+# Battery parameters
 
+
+# -------------------------------------------------- #
+
+
+# SHOW PLOT
+# -------------------------------------------------- #
+plt.grid(True)
 plt.show()
 plt.legend()

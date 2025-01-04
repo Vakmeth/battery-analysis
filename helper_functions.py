@@ -49,3 +49,6 @@ def set_coordinate_points(reduced_dataframe, step, cycle, capacity_points, time_
     filtered_frame = temporary_frame[temporary_frame['Cycle'] == cycle]
     capacity_points.append(filtered_frame[measure_value].iloc[index])
     time_points.append(filtered_frame['Total Time (Seconds)'].iloc[index])
+    if measure_value == 'Discharge Capacity (mAh)' and index == -1:
+        capacity_points.append(0)
+        time_points.append(filtered_frame['Total Time (Seconds)'].iloc[index])
