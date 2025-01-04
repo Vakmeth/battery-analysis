@@ -3,6 +3,7 @@ import ch_dch_plot as cdp
 import matplotlib.pyplot as plt
 import random
 import statistics as st
+import numpy as np
 
 # Define file to analyse and read out dataframe from it
 file_path_cell_1 = 'data_export/Cell2_Diagnostic_Test14893.csv'
@@ -68,11 +69,37 @@ for cell_dataframe in cell_dataframes:
 # -------------------------------------------------- # 
 
 
-# OCV
+# OCV (with first cell)
 # -------------------------------------------------- #
-# Define a current threshold near zero
-# Battery parameters
+filtered = cell_dataframe_1[cell_dataframe_1['Step'].isin([23])]
+data = filtered[filtered['Cycle'] == 2]
+data['Total Time (Seconds)'] = range(1, len(data) + 1)
 
+# Constants (set these based on your system)
+
+C_nominal = 109.0  # Nominal battery capacity in Ah
+SOC_initial = 0  # Initial SOC in percentage
+
+# Convert current from mA to A, and time from seconds
+data['Current_A'] = data['Current (mA)'] / 1000
+data['Time_h'] = data['Total Time (Seconds)'] / 3600
+data['voltage_V'] = data['Voltage (mV)'] / 1000
+
+# Calculate charge consumed (cumulative sum of Current * Time interval)
+data['Charge_Consumed_Ah'] = np.cumsum(data['Current_A'] * np.diff([0] + list(data['Time_h'])))
+
+# Calculate SOC
+data['SOC'] = SOC_initial - (data['Charge_Consumed_Ah'] / C_nominal) * 100
+
+# Ensure SOC does not go below 0
+data['SOC'] = np.maximum(data['SOC'], 0)
+
+# Plot U/V vs SOC
+plt.figure(figsize=(10, 6))
+plt.plot(data['SOC'][::-1], data['voltage_V'], label='Voltage vs SOC', color='blue')
+plt.xlabel('SOC (%)')
+plt.ylabel('Voltage (V)')
+plt.title('Voltage vs State of Charge (SOC)')
 
 # -------------------------------------------------- #
 
